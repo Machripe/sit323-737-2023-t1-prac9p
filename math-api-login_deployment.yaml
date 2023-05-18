@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: math-api-login-mongo
+  labels:
+    k8s-app: math-api-login-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: math-api-login-mongo
+  template:
+    metadata:
+      name: math-api-login-mongo
+      creationTimestamp: null
+      labels:
+        k8s-app: math-api-login-mongo
+    spec:
+      containers:
+        - name: math-api-login
+          image: machripe/math-api-login-mongo
+          resources: {}
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
